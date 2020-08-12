@@ -25,7 +25,7 @@ patient <- opt$patient
 dat <- read.xlsx(sheet, sheetIndex = 1)
 dat <- dat %>%
   filter_all(any_vars(!is.na(.))) %>%
-  mutate(PNOC.Subject.ID = gsub('P-','PNOC008-', PNOC.Subject.ID)) %>%
+  mutate(PNOC.Subject.ID = patient) %>%
   dplyr::filter(PNOC.Subject.ID == patient)
 
 # create clinical file
@@ -38,6 +38,7 @@ df <- dat %>%
          ethnicity = Ethnicity,
          age_diagnosis_days = Age.at.Diagnosis..in.days.,
          age_collection_days = Age.at.Collection..in.days.,
+         library_name = Library_name,
          sex = Gender) %>%
   dplyr::select(subjectID, reportDate, tumorType,	tumorLocation, ethnicity, sex, age_diagnosis_days, age_collection_days, KF_ParticipantID, library_name)
 
