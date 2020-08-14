@@ -10,6 +10,8 @@ params:
     value: 'both'
   set_title:
     value: 'Patient Report'
+  dgd_gene_expression:
+    value: NULL
   snv_pattern:
     value: NULL
 editor_options: 
@@ -51,9 +53,7 @@ Row {data-height=700}
 ### Transcriptome Alterations
     
 ```{r plot_genes}
-if(exists('expData')){
-  ggplotly(plotGenes()); 
-}
+ggplotly(plotFoldChange(dgd_gene_expression = params$dgd_gene_expression)); 
 ```
 
 ### Pathway Alterations
